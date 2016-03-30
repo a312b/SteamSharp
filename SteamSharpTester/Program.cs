@@ -15,7 +15,7 @@ namespace SteamSharpTester
             http://www.c-sharpcorner.com/UploadFile/9b86d4/getting-started-with-html-agility-pack/
             */
            
-            var SharpTest = new Tests();
+            var SharpTest = new Tests("ENTER API KEY");
 
             Console.ReadKey();
 
