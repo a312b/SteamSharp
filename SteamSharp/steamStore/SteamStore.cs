@@ -54,19 +54,9 @@ namespace SteamSharp.steamStore
         {
 
             //Get the data from the steam store for the game
-            SteamStoreGame storeGame = GetGameData(gameId);
+            var storeGame = GetGameData(gameId);
             storeGame.data.tags = GetTags(gameId);
 
-            /* Code for new Class format
-            //Create a new Game object
-            Game SteamGame = new Game();
-            //Set Game data from steam store to the game object
-            SteamGame.Title = StoreGame.data.name;
-            SteamGame.SteamAppId = StoreGame.data.steam_appid;
-
-            //Get steam tags and add them to the Game
-            SteamGame.Tags = SteamStoreApi.GetTags(gameId);
-            */
             return storeGame;
         }
     }

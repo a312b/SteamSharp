@@ -11,13 +11,13 @@ namespace SteamSharp
 {
     //Main Class for interacting with the library
     //All database code lacks and implementation
-    //Some classes/models are not used, this is due to the missing, but planned features
+    //Some classes/models are not used, this is due to the missing, but planned database features
     // ------------------------------------------------ Naming convention ----------------------------------------------------
     // Functions:
     //              Get:        Functions that perform a http GET request
-    //              Find:       Functions that look up data in the database
-    //              Update:     Functions that update data in the database
-   
+    //              Find:       Functions that look up data in the database with the find() method
+    //              Update:     Functions that update data in the database with the update method (May include FindAndUpdate())
+
     public class SteamSharp
     { 
         //Functions that are used in production
