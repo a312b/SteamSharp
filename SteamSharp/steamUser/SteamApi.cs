@@ -1,7 +1,7 @@
-﻿using System;
-using RestSharp;
+﻿using RestSharp;
 using SteamSharp.restsharp;
 using SteamSharp.steamUser.models;
+using static System.String;
 
 namespace SteamSharp.steamUser
 {
@@ -9,16 +9,16 @@ namespace SteamSharp.steamUser
     {
         //Key used for most requests to the server
         //Generate/retrieve one here: http://steamcommunity.com/dev/apikey
-        public string SteamDelveoperKey { private get; set; }
+        private string SteamDelveoperKey { get; }
 
-        public SteamApi(string key)
+        public SteamApi(string steamKey)
         {
-            SteamDelveoperKey = key;
+            SteamDelveoperKey = steamKey;
             BaseUrl = " http://api.steampowered.com/";
         }
         public SteamUser GetSteamUserData(string[] steamUserIds)
         {
-            var idString = String.Join(",", steamUserIds); //Convert to a comma seperated string (This is the format required by the api)
+            var idString = Join(",", steamUserIds); //Convert to a comma seperated string (This is the format required by the api)
             var request = new RestRequest {Resource = "ISteamUser/GetPlayerSummaries/v0002/" };
             request.AddParameter("key", SteamDelveoperKey, ParameterType.QueryString);
             request.AddParameter("steamids", idString, ParameterType.QueryString);

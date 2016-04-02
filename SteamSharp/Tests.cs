@@ -6,13 +6,13 @@ namespace SteamSharp
     //Just here for basic testing of the library
     public class Tests
     {
-        public string ApiKey { get; set; }
+        private string SteamDelveoperKey { get; }
 
-        readonly SteamSharp _steamSharpTest = new SteamSharp();
+        private readonly SteamSharp _steamSharpTest = new SteamSharp();
 
-        public Tests(string Key)
+        public Tests(string steamKey)
         {
-            ApiKey = Key;
+            SteamDelveoperKey = steamKey;
         }
         //Functions for testing library 
         public void PrintGamesFromStoreTest()
@@ -34,7 +34,7 @@ namespace SteamSharp
         }
         public void PrintPlayerTest()
         {
-            var steamUser = new SteamApi(ApiKey);
+            var steamUser = new SteamApi(SteamDelveoperKey);
             string[] idArray = { "76561197960435530", "76561198022252871" };
             var steamUserList = steamUser.GetSteamUserData(idArray).players;
             foreach (var steamPlayer in steamUserList)
@@ -47,7 +47,7 @@ namespace SteamSharp
 
         public void PrintPlayerGameTimeListTest()
         {
-            var gameTimeList = _steamSharpTest.SteamUserGameTimeListById(ApiKey, "76561197960434622");
+            var gameTimeList = _steamSharpTest.SteamUserGameTimeListById(SteamDelveoperKey, "76561197960434622");
             foreach (var game in gameTimeList)
             {
                 Console.Write($"Game id: {game.appid} - Time played: {game.playtime_forever}");
