@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SteamSharp")]
-[assembly: AssemblyDescription("Library for the Steam Apis")]
+[assembly: AssemblyTitle("Database")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("A312b")]
-[assembly: AssemblyProduct("SteamSharp")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Database")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("36df0e1a-ea75-4b5b-b2c1-fb2c8838d0d6")]
+[assembly: Guid("d75d116f-b418-4d10-a8d7-c722e3521580")]
 
 // Version information for an assembly consists of the following four values:
 //
