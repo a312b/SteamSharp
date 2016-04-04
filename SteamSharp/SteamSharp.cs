@@ -13,13 +13,11 @@ namespace SteamSharp
     //All database code lacks and implementation
     //Some classes/models are not used, this is due to the missing, but planned database features
     // ------------------------------------------------ Naming convention ----------------------------------------------------
-    // Functions:
+    // Functions Prefix:
     //              Get:        Functions that perform a http GET request
-    //              Find:       Functions that look up data in the database with the find() method
-    //              Update:     Functions that update data in the database with the update method (May include FindAndUpdate())
 
     public class SteamSharp
-    { 
+    {
         //Functions that are used in production
 
         //Get a list of games from the steam store.
@@ -39,7 +37,7 @@ namespace SteamSharp
         //Get list of the games by user and the time played. Time played for 2 weeks are null for games that user hasn't played within the period.
         //Note: Steam havent always recorded game time. (start 2009)
         //The return is in minutes
-        public List<UserGameTime.Game> SteamUserGameTimeListById(string steamKey,string steamUserId)
+        public List<UserGameTime.Game> SteamUserGameTimeListById(string steamKey, string steamUserId)
         {
             var steamUserWebApi = new SteamApi(steamKey);
             var gameTimeList = steamUserWebApi.GetGameTimeForUserById(steamUserId).games;
@@ -55,6 +53,6 @@ namespace SteamSharp
 
             return gameData;
         }
-        
+
     }
 }

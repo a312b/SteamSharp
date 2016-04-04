@@ -60,18 +60,6 @@ namespace SteamSharp
             var spydata = _steamSharpTest.GameSteamSpyDataById("730");
             Console.Write($"Game: {spydata.name} and owners: {spydata.owners}");
         }
-
-
-        //Old db test
-        /*
-        public void dbTester()
-        {
-            mongodb mongo = new mongodb();
-            mongo.Dbtest();
-            mongo.DbGetData();
-           
-        }
-        */
     }
 
 }

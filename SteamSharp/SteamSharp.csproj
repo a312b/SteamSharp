@@ -60,31 +60,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="database\mongodb.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="restsharp\RestRequestBase.cs" />
+    <Compile Include="lib\restsharp\RestRequestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="models\Game.cs" />
-    <Compile Include="steamSpy\models\SteamSpyData.cs" />
-    <Compile Include="steamSpy\SteamSpy.cs" />
-    <Compile Include="steamStore\models\SteamStoreGame.cs" />
-    <Compile Include="steamStore\SteamStore.cs" />
+    <Compile Include="lib\steamSpy\models\SteamSpyData.cs" />
+    <Compile Include="lib\steamSpy\SteamSpy.cs" />
+    <Compile Include="lib\steamStore\models\SteamStoreGame.cs" />
+    <Compile Include="lib\steamStore\SteamStore.cs" />
     <Compile Include="SteamSharp.cs" />
-    <Compile Include="steamUser\models\SteamUser.cs" />
-    <Compile Include="steamUser\models\UserGameTime.cs" />
-    <Compile Include="steamUser\SteamApi.cs" />
+    <Compile Include="lib\steamUser\models\SteamUser.cs" />
+    <Compile Include="lib\steamUser\models\UserGameTime.cs" />
+    <Compile Include="lib\steamUser\SteamApi.cs" />
     <Compile Include="Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="database\models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
