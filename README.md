@@ -29,5 +29,5 @@ This solution contains a library for working with a [MongoDB](https://www.mongod
 3. To use the library and the database provided, specify the path to the folder containing the data.
 Assuming your dir is at C:\Source\
 ```
-C:\mongodb\bin\mongod.exe --dbpath C:\Source\Database\data
+C:\mongodb\bin\mongod.exe --dbpath C:\Source\SteamSharp\Database\data
 ```
