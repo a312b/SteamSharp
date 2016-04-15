@@ -14,6 +14,10 @@ namespace PageRank
         static void Main(string[] args)
         {
             TagHandler tagHandler = new TagHandler(200);
+            foreach (var game in tagHandler.gameList)
+            {
+                Console.WriteLine(game.data.name);
+            }
 
             Console.ReadKey();
         }
