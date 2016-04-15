@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SteamSharp.steamStore.models;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace PageRank
 {
@@ -13,13 +14,33 @@ namespace PageRank
     {
         static void Main(string[] args)
         {
-            TagHandler tagHandler = new TagHandler(200);
-            foreach (var game in tagHandler.gameList)
+            List<EssentialGameData> gameList = new List<EssentialGameData>();
+            //SteamSharp.SteamSharp steamSharp = new SteamSharp.SteamSharp();
+            //TagHandler tagHandler = new TagHandler(1);
+            DirectoryInfo dir = new DirectoryInfo(@"C:\Test");
+            foreach (FileInfo file in dir.GetFiles())
             {
-                Console.WriteLine(game.data.name);
+                gameList.Add(DeserializeObjects(file.FullName));
+            }
+            foreach (var gameData in gameList)
+            {
+                Console.WriteLine(gameData.Name);
+                Console.WriteLine(gameData.GameID);
             }
 
+
             Console.ReadKey();
+        }
+
+        public static EssentialGameData DeserializeObjects(string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open)) //double check that...
+            {
+                XmlSerializer _xSer = new XmlSerializer(typeof(EssentialGameData));
+
+                var myObject = _xSer.Deserialize(fs);
+                return myObject as EssentialGameData;
+            }
         }
     }
 }

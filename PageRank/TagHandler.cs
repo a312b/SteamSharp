@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Xml.Serialization;
 using SteamSharp.steamStore.models;
 
 namespace PageRank
 {
     class TagHandler
     {
-        public List<int> ListOfGameIDs;
-        public List<SteamStoreGame> gameList { get; private set; }
+        public static List<SteamStoreGame> gameList = new List<SteamStoreGame>();
+        public static int index = 0;
+        private int[] PrimaryTags = new int[30];
 
         public TagHandler(int numberOfGames)
         {
@@ -19,29 +21,42 @@ namespace PageRank
             string[] ListOfIDs = reader.ReadLine().Split(',').Take(numberOfGames).ToArray();
             List<string> IDStringList = ListOfIDs.Select(ID => ID.Trim()).ToList();
             reader.Close();
+
             GenerateGameList(IDStringList);
         }
 
         private void GenerateGameList(List<string> ListOfIDs)
         {
+            
             var steamSharp = new SteamSharp.SteamSharp();
-            int errorCount = 0;
-            for (int index = 0; index < ListOfIDs.Count; index++)
+
+            foreach (string ID in ListOfIDs)
             {
                 try
-                {
-                    gameList.AddRange(steamSharp.GameListByIds(new[] {ListOfIDs[index]}));
+                { 
+                    gameList.AddRange(steamSharp.GameListByIds(new [] {ID }));
                 }
                 catch (ArgumentNullException)
                 {
-                    errorCount++;
                 }
                 catch (NullReferenceException)
                 {
-                    errorCount++;
                 }
             }
-            
+            foreach (var game in gameList)
+            {
+                EssentialGameData essentialGameData = new EssentialGameData();
+                string gameFileName = game.data.name.Where(char.IsLetterOrDigit)
+                    .Aggregate("", (current, ch) => current + ch);
+                var path = @"C:\Test\" + gameFileName + ".xml";
+                
+                using (FileStream fs = new FileStream(path, FileMode.Create))
+                {
+                    XmlSerializer xSer = new XmlSerializer(typeof(EssentialGameData));
+
+                    xSer.Serialize(fs, essentialGameData);
+                }
+            }
         }
     }
 }

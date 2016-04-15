@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SteamSharp.steamStore.models
 {
     //This is the model for the data provided by the steam store api. The model is used by the serializer
+    
     public class SteamStoreGame
     {
 
