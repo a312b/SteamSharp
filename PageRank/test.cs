@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PageRank
 {
-    class SerializeGames
+    class test
     {
     }
 }

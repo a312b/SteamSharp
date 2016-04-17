@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Xml.Serialization;
 using SteamSharp.steamStore.models;
+using System.Runtime.Serialization;
 
 namespace PageRank
 {
@@ -22,11 +23,14 @@ namespace PageRank
             List<string> IDStringList = ListOfIDs.Select(ID => ID.Trim()).ToList();
             reader.Close();
 
-            GenerateGameList(IDStringList);
+            //GenerateGameList(IDStringList);
+            GenerateGameList(new List<string>() { "434000" });
         }
 
         private void GenerateGameList(List<string> ListOfIDs)
         {
+            var erroridsTxt = @"C:\Test\Errors" + "errorIDs.txt";
+            StreamWriter writer = new StreamWriter(erroridsTxt);
             
             var steamSharp = new SteamSharp.SteamSharp();
 
@@ -38,17 +42,20 @@ namespace PageRank
                 }
                 catch (ArgumentNullException)
                 {
+                    writer.Write("error processing ID : " + ID);
                 }
                 catch (NullReferenceException)
                 {
+                    writer.Write("error processing ID : " + ID);
                 }
             }
+            writer.Close();
             foreach (var game in gameList)
             {
                 EssentialGameData essentialGameData = new EssentialGameData();
                 string gameFileName = game.data.name.Where(char.IsLetterOrDigit)
                     .Aggregate("", (current, ch) => current + ch);
-                var path = @"C:\Test\" + gameFileName + ".xml";
+                var path = @"C:\Test\wut\" + gameFileName + ".xml";
                 
                 using (FileStream fs = new FileStream(path, FileMode.Create))
                 {
@@ -56,7 +63,14 @@ namespace PageRank
 
                     xSer.Serialize(fs, essentialGameData);
                 }
+                SerializeObject(essentialGameData);
             }
+        }
+
+        private void SerializeObject(EssentialGameData data)
+        {
+            DataContractSerializer serializer = new DataContractSerializer(typeof(EssentialGameData));
+
         }
     }
 }
