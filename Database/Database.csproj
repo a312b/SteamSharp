@@ -55,8 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database.cs" />
     <Compile Include="lib\converter\models\Game.cs" />
-    <Compile Include="lib\mongodb\MongoDb.cs" />
+    <Compile Include="lib\MongoDb.cs" />
     <Compile Include="SteamSharpDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
