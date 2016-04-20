@@ -25,11 +25,11 @@ namespace PageRank
         public SteamStoreGame.Metacritic MetaCritic { get;  set; }
         public SteamStoreGame.Recommendations Recommendations { get;  set; }
         public bool IsFree { get;  set; }
-        public EssentialGameData() : this(TagHandler.gameList[TagHandler.index++])
+        public EssentialGameData()
         { }
 
         
-        protected EssentialGameData(SteamStoreGame game)
+        public EssentialGameData(SteamStoreGame game)
         {
             Name = game.data.name;
             GameID = game.data.steam_appid;
