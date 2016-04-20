@@ -18,6 +18,7 @@ namespace PageRank
         {
             GameObjectDeSerializer deSerializer = new GameObjectDeSerializer();
             TempGameGetter tagHandler = new TempGameGetter(10);
+
             //DirectoryInfo dir = new DirectoryInfo(@"C:\Test\");
             //List<EssentialGameData> gameList = new List<EssentialGameData>();
 
