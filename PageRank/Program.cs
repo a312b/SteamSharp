@@ -16,8 +16,22 @@ namespace PageRank
     {
         static void Main(string[] args)
         {
-            GameObjectDeSerializer deSerializer = new GameObjectDeSerializer();
-            TempGameGetter tagHandler = new TempGameGetter(10);
+            //GameObjectDeSerializer deSerializer = new GameObjectDeSerializer();
+            //TempGameGetter tagHandler = new TempGameGetter(10);
+            ArrayList input = new ArrayList();
+            input.Add(new List<int>() {1, 1, 1, 1, 1, 1});
+            input.Add(new List<int>() {1, 1, 1, 1, 1, 1});
+            input.Add(new List<int>() {1, 1, 1, 1, 1, 1});
+
+            CopyPasteRank cpRank = new CopyPasteRank(input);
+
+            double[] result;
+            result = cpRank.ComputePageRank();
+
+            foreach (var d in result)
+            {
+                Console.WriteLine(d);
+            }
 
             //DirectoryInfo dir = new DirectoryInfo(@"C:\Test\");
             //List<EssentialGameData> gameList = new List<EssentialGameData>();

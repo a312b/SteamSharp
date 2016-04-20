@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 
@@ -78,6 +79,7 @@ namespace PageRank
             ArrayList leafNodes = new ArrayList();
             for (int i = 0; i < nPages; i++)
             {
+                
                 List<int> values = outGoingLinks[i] as List<int>;
                 if (values.Count == 0)
                     leafNodes.Add(i);
