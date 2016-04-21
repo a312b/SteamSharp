@@ -12,7 +12,7 @@ namespace PageRank
 {
     class CopyPasteRank
     {
-        //Copy-pasted version
+        /// Copy-pasted version
         #region Private Fields
 
         ArrayList _incomingLinks, _leafNodes;
@@ -33,6 +33,7 @@ namespace PageRank
             _alpha = alpha;
             _convergence = convergence;
             _checkSteps = checkSteps;
+            
         }
 
         #endregion

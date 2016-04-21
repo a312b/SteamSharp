@@ -56,7 +56,7 @@
     <Compile Include="CalculatePageRank.cs" />
     <Compile Include="CopyPasteRank.cs" />
     <Compile Include="EssentialGameData.cs" />
-    <Compile Include="GameObjectDeSerializer.cs" />
+    <Compile Include="GameObjectDeserializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameObjectSerializer.cs" />

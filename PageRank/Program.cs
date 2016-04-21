@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SteamSharp.steamStore.models;
 using System.IO;
+using System.Net.Configuration;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -16,13 +17,19 @@ namespace PageRank
     {
         static void Main(string[] args)
         {
-            //GameObjectDeSerializer deSerializer = new GameObjectDeSerializer();
-            //TempGameGetter tagHandler = new TempGameGetter(10);
+            //GameObjectDeserializer deSerializer = new GameObjectDeserializer();
+            //TempGameGetter getter = new TempGameGetter(10);
             ArrayList input = new ArrayList();
-            input.Add(new List<int>() {1, 1, 1, 1, 1, 1});
-            input.Add(new List<int>() {1, 1, 1, 1, 1, 1});
-            input.Add(new List<int>() {1, 1, 1, 1, 1, 1});
 
+            input.Add(new List<int>() {0, 1, 1, 1, 1, 1});
+            input.Add(new List<int>() {0, 0, 0, 0, 0, 0});
+            input.Add(new List<int>() {1, 1, 0, 1, 1, 1});
+            input.Add(new List<int>() {1, 1, 1, 0, 1, 1});
+            input.Add(new List<int>() {1, 1, 1, 1, 0, 1});
+            input.Add(new List<int>() {1, 1, 1, 1, 1, 0});
+            input.Add(new List<int>() {1, 0, 1, 0, 1, 1});
+            input.Add(new List<int>() {1, 1, 0, 1, 0, 1});
+            input.Add(new List<int>() {1, 1, 1, 0, 1, 0});
             CopyPasteRank cpRank = new CopyPasteRank(input);
 
             double[] result;
@@ -47,7 +54,5 @@ namespace PageRank
 
             Console.ReadKey();
         }
-
-        
     }
 }
