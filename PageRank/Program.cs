@@ -2,12 +2,15 @@
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SteamSharp.steamStore.models;
 using System.IO;
+using System.Linq.Expressions;
 using System.Net.Configuration;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -19,26 +22,22 @@ namespace PageRank
         {
             //GameObjectDeserializer deSerializer = new GameObjectDeserializer();
             //TempGameGetter getter = new TempGameGetter(10);
-            ArrayList input = new ArrayList();
 
-            input.Add(new List<int>() {0, 1, 1, 1, 1, 1});
-            input.Add(new List<int>() {0, 0, 0, 0, 0, 0});
-            input.Add(new List<int>() {1, 1, 0, 1, 1, 1});
-            input.Add(new List<int>() {1, 1, 1, 0, 1, 1});
-            input.Add(new List<int>() {1, 1, 1, 1, 0, 1});
-            input.Add(new List<int>() {1, 1, 1, 1, 1, 0});
-            input.Add(new List<int>() {1, 0, 1, 0, 1, 1});
-            input.Add(new List<int>() {1, 1, 0, 1, 0, 1});
-            input.Add(new List<int>() {1, 1, 1, 0, 1, 0});
-            CopyPasteRank cpRank = new CopyPasteRank(input);
+            TagReader tagReader = new TagReader(@"C:\Users\Alex\Desktop\TagsForAppID.txt");
+            tagReader.Start();
 
-            double[] result;
-            result = cpRank.ComputePageRank();
+            Tuple<List<string>, List<List<int>>> input = tagReader.GenerateTagMatrix();
 
-            foreach (var d in result)
+            ArrayList arrList = new ArrayList();
+
+            foreach (List<int> list in input.Item2)
             {
-                Console.WriteLine(d);
+                arrList.Add(list);
             }
+
+            CopyPasteRank cpRank = new CopyPasteRank(arrList);
+
+            double[] result = cpRank.ComputePageRank();
 
             //DirectoryInfo dir = new DirectoryInfo(@"C:\Test\");
             //List<EssentialGameData> gameList = new List<EssentialGameData>();
