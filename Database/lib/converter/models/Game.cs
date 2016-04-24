@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 using SteamSharp.steamStore.models;
 
 namespace Database.lib.converter.models
 {
     public class Game
     {
+        public ObjectId _id { get; set; }
         //The main class. Contains all the information about a Steam game. Data is pulled from Steam Store, Steamspy and Steam Store Api.
         //The data is stored in JSON like format in the database. A game can be retrieved by its AppId from the database.
         //Note: All games have 2 id's. One is the Steam App Id, the other is the Id givin by the Database. Use the Steam App Id in most cases.

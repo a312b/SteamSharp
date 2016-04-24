@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Database.lib.converter.models;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -7,17 +9,23 @@ using SteamSharp.steamStore.models;
 
 namespace Database.lib
 {
-    public class MongoDb
+    internal class MongoDb
     {
+        private MongoClient Client { get; }
+        private IMongoDatabase Database { get; }
+        private IMongoCollection<Game> Collection { get; } 
 
+        public MongoDb(string connectionString, string database, string collection)
+        {
+            Client = new MongoClient(connectionString);
+            Database = Client.GetDatabase(database);
+            Collection = Database.GetCollection<Game>(collection);
+        }
         public async void DbInsertGame(SteamStoreGame storeGame, SteamSpyData steamSpy)
         {
-            const string connectionString = "mongodb://localhost:27017";
-            var client = new MongoClient(connectionString);
-            var database = client.GetDatabase("test");
-            var collection = database.GetCollection<Game>("Games");
             var document = new Game
             {
+                //Translate the data from the steam store game and the steam spy data. This removes the need for doing this in the UI.
                 Title = storeGame.data.name,
                 Developer = storeGame.data.developers,
                 Publisher = storeGame.data.publishers,
@@ -42,33 +50,14 @@ namespace Database.lib
 
             };
 
-            await collection.InsertOneAsync(document);
+            await Collection.InsertOneAsync(document);
 
         }
-
-        public async void DbFindGames()
+        
+        public List<Game> DbFindGames()
         {
-            const string connectionString = "mongodb://localhost";
-            var client = new MongoClient(connectionString);
-            var database = client.GetDatabase("test");
-
-            var collection = database.GetCollection<BsonDocument>("Games");
-            var filter = new BsonDocument();
-            var count = 0;
-            using (var cursor = await collection.FindAsync(filter))
-            {
-                while (await cursor.MoveNextAsync())
-                {
-                    var batch = cursor.Current;
-                    foreach (var document in batch)
-                    {
-                        // process document
-                        Console.Write(document.AsBsonDocument);
-                        count++;
-                    }
-                }
-            }
-            Console.Write(count);
+            var filter = Builders<Game>.Filter.Empty;
+            return Collection.Find(filter).ToList();
         }
     }
 }
