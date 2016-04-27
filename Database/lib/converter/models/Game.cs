@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MongoDB.Bson;
-using SteamSharp.steamStore.models;
+using SteamSharpCore.steamStore.models;
 
 namespace Database.lib.converter.models
 {
@@ -19,10 +19,11 @@ namespace Database.lib.converter.models
 
         //Note these Id's have varying length.
         public int SteamAppId { get;  set; }
+        public string Description { get; set; }
 
         //String is converted from the Steam Store Api to a DateTime object. This can be used for sorting.
         public bool Released { get; set; }
-        public DateTime ReleaseDate { get;  set; }
+        public string ReleaseDate { get;  set; }
         public int AveragePlayTime { get;  set; }
         public int AveragePlayTime2Weeks { get;  set; }
 

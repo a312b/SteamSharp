@@ -2,10 +2,10 @@
 using System.Linq;
 using HtmlAgilityPack;
 using RestSharp;
-using SteamSharp.restsharp;
-using SteamSharp.steamStore.models;
+using SteamSharpCore.restsharp;
+using SteamSharpCore.steamStore.models;
 
-namespace SteamSharp.steamStore
+namespace SteamSharpCore.steamStore
 {
     //Class for interacting with the Steam Store
     internal class SteamStore : RestRequestBase
@@ -55,7 +55,7 @@ namespace SteamSharp.steamStore
 
             //Get the data from the steam store for the game
             var storeGame = GetGameData(gameId);
-            storeGame.data.tags = GetTags(gameId);
+            //storeGame.data.tags = GetTags(gameId);
 
             return storeGame;
         }

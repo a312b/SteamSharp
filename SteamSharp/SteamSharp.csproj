@@ -63,7 +63,6 @@
     <Compile Include="lib\steamUser\models\SteamUser.cs" />
     <Compile Include="lib\steamUser\models\UserGameTime.cs" />
     <Compile Include="lib\steamUser\SteamApi.cs" />
-    <Compile Include="Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

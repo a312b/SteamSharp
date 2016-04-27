@@ -51,8 +51,8 @@ C:\Source\SteamSharp\SteamSharp\bin\Debug\RestSharp.dll
 C:\Source\SteamSharp\SteamSharp\bin\Debug\HtmlAgilityPack.pdb
 C:\Source\SteamSharp\SteamSharp\bin\Debug\HtmlAgilityPack.xml
 C:\Source\SteamSharp\SteamSharp\bin\Debug\RestSharp.xml
-C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.csprojResolveAssemblyReference.cache
 C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.Properties.Resources.resources
 C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.csproj.GenerateResource.Cache
 C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.dll
 C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.pdb
+C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.csprojResolveAssemblyReference.cache

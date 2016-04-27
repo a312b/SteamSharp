@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SteamSharp.steamStore.models
+namespace SteamSharpCore.steamStore.models
 {
     //This is the model for the data provided by the steam store api. The model is used by the serializer
     public class SteamStoreGame
@@ -83,7 +83,7 @@ namespace SteamSharp.steamStore.models
 
         public class Tag
         {
-            public string id { get; set; }
+            //public string id { get; set; }
             public string description { get; set; }
         }
 
