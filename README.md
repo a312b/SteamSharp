@@ -70,10 +70,13 @@ This solution contains a library for working with a [MongoDB](https://www.mongod
 To use the database library, simply add the refrence for the Database.dll found at /Database/bin/Debug
 1. Install [MongoDB](https://www.mongodb.org/downloads#production) for your platform.
 2. A setup guide for Windows can be found [here](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/).
-3. To use the library and the database provided, specify the path to the folder containing the data.
-Assuming your dir is at C:\Source\
+3. To use the library and the data provided, specify the path to the folder containing the data and restore it on a running mongod instance.
+Assuming your install dir is C:\mongodb
 ```
-C:\mongodb\bin\mongod.exe --dbpath C:\Source\SteamSharp\Database\data
+//Start the database setting source to where you want data to be stored. Note: Do not use the folder from this project.
+C:\mongodb\bin\mongod.exe --dbpath C:\data\Steamsharp
+//Lets restore the data from Google Drive. Use the path to where the dump file is located.
+C:\mongodb\bin\mongorestore.exe --collection Games --db SteamSharp dump/SteamSharp/Games.bson
 ```
 You can check if the database is working by running mongo.exe. Mongo is found in the installation folder together with mongod.exe
 ```
