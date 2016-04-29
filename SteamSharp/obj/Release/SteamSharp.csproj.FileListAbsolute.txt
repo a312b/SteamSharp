@@ -1,0 +1,12 @@
+C:\Source\SteamSharp\SteamSharp\bin\Release\SteamSharp.dll
+C:\Source\SteamSharp\SteamSharp\bin\Release\SteamSharp.pdb
+C:\Source\SteamSharp\SteamSharp\bin\Release\HtmlAgilityPack.dll
+C:\Source\SteamSharp\SteamSharp\bin\Release\RestSharp.dll
+C:\Source\SteamSharp\SteamSharp\bin\Release\HtmlAgilityPack.pdb
+C:\Source\SteamSharp\SteamSharp\bin\Release\HtmlAgilityPack.xml
+C:\Source\SteamSharp\SteamSharp\bin\Release\RestSharp.xml
+C:\Source\SteamSharp\SteamSharp\obj\Release\SteamSharp.csprojResolveAssemblyReference.cache
+C:\Source\SteamSharp\SteamSharp\obj\Release\SteamSharp.Properties.Resources.resources
+C:\Source\SteamSharp\SteamSharp\obj\Release\SteamSharp.csproj.GenerateResource.Cache
+C:\Source\SteamSharp\SteamSharp\obj\Release\SteamSharp.dll
+C:\Source\SteamSharp\SteamSharp\obj\Release\SteamSharp.pdb

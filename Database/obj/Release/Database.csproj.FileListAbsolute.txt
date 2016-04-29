@@ -1,0 +1,17 @@
+C:\Source\SteamSharp\Database\bin\Release\Database.dll
+C:\Source\SteamSharp\Database\bin\Release\Database.pdb
+C:\Source\SteamSharp\Database\bin\Release\MongoDB.Bson.dll
+C:\Source\SteamSharp\Database\bin\Release\MongoDB.Driver.Core.dll
+C:\Source\SteamSharp\Database\bin\Release\MongoDB.Driver.dll
+C:\Source\SteamSharp\Database\bin\Release\SteamSharp.dll
+C:\Source\SteamSharp\Database\bin\Release\RestSharp.dll
+C:\Source\SteamSharp\Database\bin\Release\HtmlAgilityPack.dll
+C:\Source\SteamSharp\Database\bin\Release\MongoDB.Bson.xml
+C:\Source\SteamSharp\Database\bin\Release\MongoDB.Driver.xml
+C:\Source\SteamSharp\Database\bin\Release\SteamSharp.pdb
+C:\Source\SteamSharp\Database\bin\Release\RestSharp.xml
+C:\Source\SteamSharp\Database\bin\Release\HtmlAgilityPack.pdb
+C:\Source\SteamSharp\Database\bin\Release\HtmlAgilityPack.xml
+C:\Source\SteamSharp\Database\obj\Release\Database.csprojResolveAssemblyReference.cache
+C:\Source\SteamSharp\Database\obj\Release\Database.dll
+C:\Source\SteamSharp\Database\obj\Release\Database.pdb
