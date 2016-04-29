@@ -1,14 +1,17 @@
 # SteamSharp
 A C# library for the steam apis. 
 SteamSharp consists of 3 parts:
+
 1. SteamSharp, which handles all the data collection from Steam and SteamSpy.
 2. DatabaseCore, which is responsible for all operations made to the Mongodb.
 3. LoadDatabase, which is the code that loads a new database with all games from steam.
+
 Note: The LoadDatabase is a console application and not i library. It is set as the startup project in the Visual Studio Solution. 
 But the LoadDatabase/Program.cs file is left empty.
 ## Set up
 To use the the library, you need to add a refrence in your project.
-In your own project add a refrence to the SteamSharp.dll for SteamSharp found at /SteamSharp/bin/Debug
+In your own project add a refrence to the SteamSharp.dll for SteamSharp found at /SteamSharp/bin/Release
+
 1. Create an instance of the SteamSharp class
 ```cs
 var steamSharp = new SteamSharp(STEAM_API_KEY);
@@ -67,10 +70,12 @@ The Steam Game model can be found at lib/steamStore/models.
 # Database library
 This solution contains a library for working with a [MongoDB](https://www.mongodb.org/) database. 
 ## Set up
-To use the database library, simply add the refrence for the Database.dll found at /Database/bin/Debug
+To use the database library, simply add the refrence for the Database.dll found at /Database/bin/Release
+
 1. Install [MongoDB](https://www.mongodb.org/downloads#production) for your platform.
 2. A setup guide for Windows can be found [here](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/).
 3. To use the library and the data provided, specify the path to the folder containing the data and restore it on a running mongod instance.
+
 Assuming your install dir is C:\mongodb
 ```
 //Start the database setting source to where you want data to be stored. Note: Do not use the folder from this project.
