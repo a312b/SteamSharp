@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
-using Database.lib.converter.models;
+using DatabaseCore;
 using SteamSharpCore;
 using SteamSharpCore.steamSpy.models;
 using SteamSharpCore.steamStore.models;
@@ -16,12 +12,12 @@ namespace LoadDatabse
     public class Loader
     {
         private SteamSharp SteamSharp { get; }
-        private Database.Database Db { get; }
+        private Database Db { get; }
 
         public Loader()
         {
-            SteamSharp = new SteamSharp("");
-            Db = new Database.Database();
+            SteamSharp = new SteamSharp(""); //Insert steam api key
+            Db = new Database();
         }
         public Dictionary<string, string> GetGameIdList()
         {
@@ -96,13 +92,13 @@ namespace LoadDatabse
             Console.WriteLine($"Done, Count is: {count}");
         }
 
-        public void MatchMissing()
+        public async void MatchMissing()
         {
             var fullIdList = GetGameIdList();
             var missingIdList = new List<string>();
             var missingList = new Dictionary<string, string>();
             string line;
-            string filePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent?.Parent?.FullName + @"\Missing.csv";
+            string filePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent?.Parent?.FullName + @"\MissingFinal.csv";
             StreamReader file = new StreamReader(filePath);
             while ((line = file.ReadLine()) != null)
             {
@@ -110,6 +106,53 @@ namespace LoadDatabse
                 missingIdList.Add(gamesId);
             }
             file.Close();
+            foreach (var id in missingIdList)
+            {
+                foreach (var fullid in fullIdList)
+                {
+                    if (fullid.Key == id)
+                    {
+                        missingList.Add(id, fullid.Value);
+                    }
+                }
+            }
+            //Run it into the database
+            var count = 1;
+            foreach (KeyValuePair<string, string> entry in missingList)
+            {
+                Console.WriteLine($"Running for: {entry.Key}, Number: {count}");
+                SteamStoreGame game = null;
+                try
+                {
+                    game = SteamSharp.GameById(entry.Key);
+                }
+                catch (ApplicationException)
+                {
+                    WriteErrorToLog(entry.Key, count);
+                }
+                if (game?.data != null)
+                {
+                    SteamSpyData spyData = SteamSharp.GameSteamSpyDataById(entry.Key);
+                    string[] tags = entry.Value.Split(',');
+                    game.data.tags = new List<SteamStoreGame.Tag>();
+                    foreach (var tag in tags)
+                    {
+                        game.data.tags.Add(new SteamStoreGame.Tag { description = tag });
+                    }
+                    if (game.data.is_free || game.data.price_overview == null)
+                    {
+                        Db.InsertGameNoPrice(game, spyData);
+                    }
+                    else
+                    {
+                        Db.InsertGame(game, spyData);
+                    }
+                    count++;
+                }
+                await Task.Delay(1500);
+            }
+
+            Console.WriteLine($"Done, Count is: {count}");
 
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using SteamSharpCore.steamStore.models;
 
-namespace Database.lib.converter.models
+namespace DatabaseCore.lib.converter.models
 {
     public class Game
     {

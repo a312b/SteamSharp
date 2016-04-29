@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
-using Database.lib.converter.models;
-using MongoDB.Bson;
+using DatabaseCore.lib.converter.models;
 using MongoDB.Driver;
 using SteamSharpCore.steamSpy.models;
 using SteamSharpCore.steamStore.models;
 
-namespace Database.lib
+namespace DatabaseCore.lib
 {
     internal class MongoDb
     {
@@ -90,17 +87,16 @@ namespace Database.lib
 
         }
 
-        public List<Game> DbFindGames()
+        public List<Game> DbFindGameByFilter(FilterDefinition<Game> filter )
         {
-            var filter = Builders<Game>.Filter.Empty;
-            return Collection.Find(filter).ToList();
-        }
-
-        public List<Game> DbFindGameById(string steamAppId)
-        {
-            var filter = Builders<Game>.Filter.Eq("SteamAppId", int.Parse(steamAppId));
             var result = Collection.Find(filter).ToList();
             return result;
+        }
+
+        public void DbDeleteByFilter(FilterDefinition<Game> filter )
+        {
+
+            Collection.DeleteOne(filter);
         }
        
     }
