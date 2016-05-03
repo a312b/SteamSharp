@@ -6,7 +6,7 @@ SteamSharp consists of 3 parts:
 2. DatabaseCore, which is responsible for all operations made to the Mongodb.
 3. LoadDatabase, which is the code that loads a new database with all games from steam.
 
-Note: The LoadDatabase is a console application and not i library. It is set as the startup project in the Visual Studio Solution. 
+Note: The LoadDatabase is a console application and not a library. It is set as the startup project in the Visual Studio Solution. 
 But the LoadDatabase/Program.cs file is left empty.
 ## Set up
 To use the the library, you need to add a refrence in your project.
