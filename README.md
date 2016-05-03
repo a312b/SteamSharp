@@ -101,6 +101,6 @@ Dictionary<int, Game> gamesList = FindGameByFilter(string[] steamAppIds, filter)
 
 //Some general methods have been made for simple tasks like the one above.
 //This returns a dictionary of the games with the matching ids.
-Dictionary<int, Game> gamesList = FindGameById(string[] steamAppIds);
+Dictionary<int, Game> gamesList = FindGameById(list<string> steamAppIds);
 ```
 
