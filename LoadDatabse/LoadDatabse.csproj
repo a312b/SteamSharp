@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
-      <Project>{D75D116F-B418-4D10-A8D7-C722E3521580}</Project>
+      <Project>{d75d116f-b418-4d10-a8d7-c722e3521580}</Project>
       <Name>Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\SteamSharp\SteamSharp.csproj">

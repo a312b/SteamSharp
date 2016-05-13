@@ -43,6 +43,10 @@ namespace DatabaseCore.lib.converter.models
         //Games Tags. These are pulled using a HTML request. 
         public List<SteamStoreGame.Tag> Tags { get; set; }
 
+        public List<int> DLC { get; set; }
+        
+        public int MetaCritic { get; set; }
+
         public int OwnerCount { get;  set; }
         public bool Windows { get; set; }
         public bool Mac { get; set; }
