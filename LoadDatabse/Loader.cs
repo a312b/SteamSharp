@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using DatabaseCore;
 using SteamSharpCore;
@@ -16,7 +17,7 @@ namespace LoadDatabse
 
         public Loader()
         {
-            SteamSharp = new SteamSharp(""); //Insert steam api key
+            SteamSharp = new SteamSharp("DCBF7FBBE0781730FA846CEF21DBE6D5"); //Insert steam api key
             Db = new Database();
         }
         public Dictionary<string, string> GetGameIdList()
@@ -155,6 +156,7 @@ namespace LoadDatabse
             Console.WriteLine($"Done, Count is: {count}");
 
         }
+
 
         //public void TestDb()
         //{

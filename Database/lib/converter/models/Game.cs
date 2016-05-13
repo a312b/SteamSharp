@@ -47,6 +47,8 @@ namespace DatabaseCore.lib.converter.models
         
         public int MetaCritic { get; set; }
 
+        public double RecommenderScore { get; set; }
+
         public int OwnerCount { get;  set; }
         public bool Windows { get; set; }
         public bool Mac { get; set; }

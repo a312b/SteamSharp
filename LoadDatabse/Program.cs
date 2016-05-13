@@ -1,4 +1,5 @@
 ﻿using System;
+using SteamSharpCore;
 
 namespace LoadDatabse
 {
@@ -6,8 +7,15 @@ namespace LoadDatabse
     {
         static void Main(string[] args)
         {
+            Loader loadDB = new Loader();
 
-            Console.WriteLine("Done");
+            loadDB.LoadGamesIntoDatabase();
+            
+
+            //SteamSharp ssharp = new SteamSharp("DCBF7FBBE0781730FA846CEF21DBE6D5");
+            //ssharp.GameById("430170");
+
+            Console.WriteLine("Donas");
             Console.ReadKey();
         }
     }

@@ -18,12 +18,14 @@ namespace DatabaseCore
         }
         public void InsertGame(SteamStoreGame game, SteamSpyData data)
         {
-            Mongo.DbInsertGame(game, data, false);
             Mongo.DbInsertGame(game, data, true);
+            Mongo.DbInsertGame(game, data, false);
+
         }
         public void InsertGameNoPrice(SteamStoreGame game, SteamSpyData data)
         {
             Mongo.DbInsertGameNoPrice(game, data);
+            Mongo.DbInsertGame(game, data, false);
         }
 
         public Dictionary<int, Game> FindAllGames()

@@ -56,3 +56,15 @@ C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.csproj.GenerateResource.Cac
 C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.dll
 C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.pdb
 C:\Source\SteamSharp\SteamSharp\obj\Debug\SteamSharp.csprojResolveAssemblyReference.cache
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\bin\Debug\SteamSharp.dll
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\bin\Debug\SteamSharp.pdb
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\bin\Debug\HtmlAgilityPack.dll
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\bin\Debug\RestSharp.dll
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\bin\Debug\HtmlAgilityPack.xml
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\bin\Debug\RestSharp.xml
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\obj\Debug\SteamSharp.csprojResolveAssemblyReference.cache
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\obj\Debug\SteamSharp.Properties.Resources.resources
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\obj\Debug\SteamSharp.csproj.GenerateResource.Cache
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\obj\Debug\SteamSharp.dll
+C:\Users\jeppe\Source\Repos\SteamSharp\SteamSharp\obj\Debug\SteamSharp.pdb
