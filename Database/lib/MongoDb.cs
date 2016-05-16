@@ -17,12 +17,12 @@ namespace DatabaseCore.lib
         private IMongoCollection<Game> Collection { get; } 
         private IMongoCollection<SteamStoreGame> SSGCollection { get; }
 
-        public MongoDb(string connectionString, string database, string collection)
+        public MongoDb(string connectionString, string database, string collection, string ssgCollection)
         {
             Client = new MongoClient(connectionString);
             Database = Client.GetDatabase(database);
             Collection = Database.GetCollection<Game>(collection);
-            SSGCollection = Database.GetCollection<SteamStoreGame>("SteamStoreCollection");
+            SSGCollection = Database.GetCollection<SteamStoreGame>(ssgCollection);
             TagRankDictionary = LoadTagRank();
         }
         public async void DbInsertGame(SteamStoreGame storeGame, SteamSpyData steamSpy, bool convertToDBGame)
@@ -127,7 +127,7 @@ namespace DatabaseCore.lib
         public Dictionary<string, double> LoadTagRank()
         {
             Dictionary<string, double> returnDictionary = new Dictionary<string, double>();
-            string filePath = @"C:\Shits and giggles\Random Software related stuff\TagsAndRanks.txt";
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TagsAndRanks.txt";
             StreamReader file = new StreamReader(filePath);
 
             while (!file.EndOfStream)

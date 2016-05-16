@@ -14,7 +14,7 @@ namespace DatabaseCore
 
         public Database()
         {
-            Mongo = new MongoDb("mongodb://localhost:27017", "SteamSharp", "Games");
+            Mongo = new MongoDb("mongodb://localhost:27017", "SteamSharp", "Games", "SteamStoreCollection");
         }
         public void InsertGame(SteamStoreGame game, SteamSpyData data)
         {
