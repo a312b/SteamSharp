@@ -77,14 +77,9 @@ namespace LoadDatabse
                     {
                         game.data.tags.Add(new SteamStoreGame.Tag {description = tag});
                     }
-                    if (game.data.is_free || game.data.price_overview == null)
-                    {
-                        Db.InsertGameNoPrice(game, spyData);
-                    }
-                    else
-                    {
-                        Db.InsertGame(game, spyData);
-                    }
+
+                    Db.InsertGame(game, spyData);
+                    
                     count++;
                 }
                 await Task.Delay(1500);
@@ -140,14 +135,9 @@ namespace LoadDatabse
                     {
                         game.data.tags.Add(new SteamStoreGame.Tag { description = tag });
                     }
-                    if (game.data.is_free || game.data.price_overview == null)
-                    {
-                        Db.InsertGameNoPrice(game, spyData);
-                    }
-                    else
-                    {
-                        Db.InsertGame(game, spyData);
-                    }
+                   
+                    Db.InsertGame(game, spyData);
+                    
                     count++;
                 }
                 await Task.Delay(1500);

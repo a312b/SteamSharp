@@ -16,6 +16,7 @@ namespace DatabaseCore.lib
         private IMongoDatabase Database { get; }
         private IMongoCollection<Game> Collection { get; } 
         private IMongoCollection<SteamStoreGame> SSGCollection { get; }
+        private Dictionary<string, double> TagRankDictionary { get; }
 
         public MongoDb(string connectionString, string database, string collection, string ssgCollection)
         {
@@ -25,61 +26,19 @@ namespace DatabaseCore.lib
             SSGCollection = Database.GetCollection<SteamStoreGame>(ssgCollection);
             TagRankDictionary = LoadTagRank();
         }
-        public async void DbInsertGame(SteamStoreGame storeGame, SteamSpyData steamSpy, bool convertToDBGame)
+        public async void InsertGame(SteamStoreGame storeGame, SteamSpyData steamSpy)
         {
-            if (convertToDBGame)
+            //If the game is free it will not include a price_overview. Therefore, we set and convert before building document
+            double gamePrice;
+            if (storeGame.data.price_overview == null)
             {
-                var document = new Game
-                {
-                    //Translate the data from the steam store game and the steam spy data. This removes the need for doing this in the UI.
-                    Title = storeGame.data.name ?? "",
-                    Developer = storeGame.data.developers ?? new List<string>(),
-                    Publisher = storeGame.data.publishers ?? new List<string>(),
-                    SteamAppId = storeGame.data.steam_appid,
-                    Description = Regex.Replace(storeGame.data.detailed_description, "<.*?>", string.Empty),
-                    Released = storeGame.data.release_date.coming_soon,
-                    //This date varries alot. If the game hasn't been released it will default to the 1st of the month defined by steam.
-                    ReleaseDate = storeGame.data.release_date.date ?? "",
-                    AveragePlayTime = steamSpy.average_forever,
-                    AveragePlayTime2Weeks = steamSpy.average_2weeks,
-                    //The price from store is in cents so we convert to EUR here.
-                    Price = storeGame.data.price_overview.initial/100.00,
-                    AgeRating = storeGame.data.required_age,
-                    CoverImage = new Uri(storeGame.data.header_image),
-                    StoreLink = new Uri("http://store.steampowered.com/app/" + storeGame.data.steam_appid),
-                    Genres = storeGame.data.genres ?? new List<SteamStoreGame.Genre>(),
-                    Categories = storeGame.data.categories ?? new List<SteamStoreGame.Category>(),
-                    Tags = storeGame.data.tags ?? new List<SteamStoreGame.Tag>(),
-                    OwnerCount = steamSpy.owners,
-                    Windows = storeGame.data.platforms.windows,
-                    Linux = storeGame.data.platforms.linux,
-                    Mac = storeGame.data.platforms.mac,
-                    MetaCritic = storeGame.data.metacritic?.score ?? 0,
-                    DLC = storeGame.data.dlc ?? new List<int>(),
-                    RecommenderScore = 0
-
-
-                };
-
-                foreach (var tag in document.Tags)
-                {
-                    string tagKey = tag.description.ToLower();
-                    tag.TagRank = TagRankDictionary.ContainsKey(tagKey) ? TagRankDictionary[tagKey] : 0;
-                }
-
-                await Collection.InsertOneAsync(document);
+                gamePrice = 0.00;
             }
             else
             {
-                await SSGCollection.InsertOneAsync(storeGame);
+                gamePrice = storeGame.data.price_overview.initial/100.00;
             }
 
-        }
-        
-
-
-        public async void DbInsertGameNoPrice(SteamStoreGame storeGame, SteamSpyData steamSpy)
-        {
             var document = new Game
             {
                 //Translate the data from the steam store game and the steam spy data. This removes the need for doing this in the UI.
@@ -94,7 +53,7 @@ namespace DatabaseCore.lib
                 AveragePlayTime = steamSpy.average_forever,
                 AveragePlayTime2Weeks = steamSpy.average_2weeks,
                 //The price from store is in cents so we convert to EUR here.
-                Price = 0,
+                Price = gamePrice,
                 AgeRating = storeGame.data.required_age,
                 CoverImage = new Uri(storeGame.data.header_image),
                 StoreLink = new Uri("http://store.steampowered.com/app/" + storeGame.data.steam_appid),
@@ -108,7 +67,6 @@ namespace DatabaseCore.lib
                 MetaCritic = storeGame.data.metacritic?.score ?? 0,
                 DLC = storeGame.data.dlc ?? new List<int>(),
                 RecommenderScore = 0
-
             };
 
             foreach (var tag in document.Tags)
@@ -118,13 +76,17 @@ namespace DatabaseCore.lib
             }
 
             await Collection.InsertOneAsync(document);
+            
 
         }
 
+        public async void InsertSteamStoreGame(SteamStoreGame game)
+        {
+            await SSGCollection.InsertOneAsync(game);
+        }
 
-        public Dictionary<string, double> TagRankDictionary { get; set; }
 
-        public Dictionary<string, double> LoadTagRank()
+        private static Dictionary<string, double> LoadTagRank()
         {
             Dictionary<string, double> returnDictionary = new Dictionary<string, double>();
             string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TagsAndRanks.txt";
